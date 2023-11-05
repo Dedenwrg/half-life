@@ -1,39 +1,26 @@
-# Optionally uncomment to ignore specific alerts
-#alerts:
-#  ignore-alerts:
-#    - alertTypeMissedRecentBlocks
-
+alerts:
+  ignore-alerts:
+    - alertTypeMissedRecentBlocks
 notifications:
   service: discord
   discord:
     webhook:
-      id: DISCORD_WEBHOOK_ID
+      id: "DISCORD_WEBHOOK_ID"
       token: DISCORD_WEBHOOK_TOKEN
     alert-user-ids:
-      - DISCORD_USER_ID
-    username: HalfLife
+      - "DISCORD_USER_ID"
+    username: Spidey Bot
 validators:
-- name: Osmosis
-  rpc: http://SOME_OSMOSIS_RPC_SERVER:26657
-  address: BECH32_CONSVAL_ADDRESS
-  chain-id: osmosis-1
-  sentries:
-    - name: sentry-1
-      grpc: 1.2.3.4:9090
-    - name: sentry-2
-      grpc: 1.2.3.5:9090
-    - name: sentry-3
-      grpc: 1.2.3.6:9090
-- name: Juno
-  rpc: http://SOME_JUNO_RPC_SERVER:26657
-  address: junovalcons...
-  chain-id: juno-1
+- name: monikername
+  rpc: tcp://localhost:26657
+  fullnode: false
+  address: mantravalcons1
+  chain-id: mantrachain-1
   rpc-retries: 20
-  # only alert when 2/20 missed blocks have occurred (default is 1)
-  missed-blocks-threshold: 2
-  # enable this when the node is not in the active set
-  fullnode: true
-  slashing_warn_threshold: 99.80
+  missed-blocks-threshold: 5
+  sentry-grpc-error-threshold: null
+  sentries: null
+  slashing_warn_threshold: 99.8
   slashing_error_threshold: 98
   recent_blocks_to_check: 20
   notify_every: 20
