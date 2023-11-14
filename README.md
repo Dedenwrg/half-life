@@ -1,4 +1,4 @@
-cd $HOME
+'-cd $HOME
 git clone https://github.com/strangelove-ventures/half-life
 cd half-life
 wget -cO - https://raw.githubusercontent.com/planq-network/half-life/main/config.yaml.example > config.yaml
@@ -10,7 +10,7 @@ sed -i "s/DISCORD_WEBHOOK_TOKEN/1HnyTKIFWu3Y07XzYxWS2xcw_zRphjQ5ZntCSfiIYwxI0SMQ
 sed -i "s/monikername/$MONIKER/" $HOME/half-life/config.yaml
 sed -i "s#tcp://localhost:26657#$RPCADDRESS#" $HOME/half-life/config.yaml
 sed -i "s/mantravalcons1/$CONSENSUSADDRESS/" $HOME/half-life/config.yaml
-go install
+go install'
 
 Every discord account has a unique Discord ID, which cannot be altered. 
 To get your unique Discord ID, first you need to go to settings (cog in bottom left) > Advanced > and toggle on developer mode. Right click on your own user, and click "Copy ID "
