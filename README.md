@@ -1,17 +1,17 @@
-```markdown
-# Half-Life Node Setup
+## Half-Life node monitor Setup
 
 This guide will help you set up and run a Half-Life node on the MantraChain network.
 
-## Prerequisites
+## Prerequisites:
 
-- [Git](https://git-scm.com/)
-- [Go](https://golang.org/)
-- [jq](https://stedolan.github.io/jq/)
+- Git: [https://git-scm.com/](https://git-scm.com/)
+- Go: [https://golang.org/](https://golang.org/)
+- jq: [https://stedolan.github.io/jq/](https://stedolan.github.io/jq/)
 
 ## Installation
 
-```bash
+```markdown
+
 cd $HOME
 git clone https://github.com/strangelove-ventures/half-life
 cd half-life
