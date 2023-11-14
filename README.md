@@ -1,21 +1,65 @@
-'-cd $HOME
+```markdown
+# Half-Life Node Setup
+
+This guide will help you set up and run a Half-Life node on the MantraChain network.
+
+## Prerequisites
+
+- [Git](https://git-scm.com/)
+- [Go](https://golang.org/)
+- [jq](https://stedolan.github.io/jq/)
+
+## Installation
+
+```bash
+cd $HOME
 git clone https://github.com/strangelove-ventures/half-life
 cd half-life
-wget -cO - https://raw.githubusercontent.com/planq-network/half-life/main/config.yaml.example > config.yaml
+wget -cO - https://raw.githubusercontent.com/Dedenwrg/half-life/main/config.yaml.example > config.yaml
 MONIKER=$(mantrachaind status | jq -r .NodeInfo.moniker)
 RPCADDRESS=$(mantrachaind status | jq -r .NodeInfo.other.rpc_address)
 CONSENSUSADDRESS=$(mantrachaind tendermint show-address)
-sed -i "s/DISCORD_WEBHOOK_ID/1072203008106041457/" $HOME/half-life/config.yaml
-sed -i "s/DISCORD_WEBHOOK_TOKEN/1HnyTKIFWu3Y07XzYxWS2xcw_zRphjQ5ZntCSfiIYwxI0SMQtLngXiKJKGSXjGIRngRF/" $HOME/half-life/config.yaml
+sed -i "s/DISCORD_WEBHOOK_ID/xxxx/" $HOME/half-life/config.yaml
+sed -i "s/DISCORD_WEBHOOK_TOKEN/xxxx/" $HOME/half-life/config.yaml
 sed -i "s/monikername/$MONIKER/" $HOME/half-life/config.yaml
 sed -i "s#tcp://localhost:26657#$RPCADDRESS#" $HOME/half-life/config.yaml
 sed -i "s/mantravalcons1/$CONSENSUSADDRESS/" $HOME/half-life/config.yaml
-go install'
+go install
+```
 
-Every discord account has a unique Discord ID, which cannot be altered. 
-To get your unique Discord ID, first you need to go to settings (cog in bottom left) > Advanced > and toggle on developer mode. Right click on your own user, and click "Copy ID "
-Replace DISCORD_USER_ID in $HOME/half-life/config.yaml with your own Discord ID (leave the brackets).
+## Discord ID Configuration
 
+Every Discord account has a unique Discord ID. To get your Discord ID:
+
+1. Go to settings (cog in bottom left) > Advanced.
+2. Toggle on developer mode.
+3. Right-click on your own user and click "Copy ID".
+
+Replace `DISCORD_USER_ID` in `$HOME/half-life/config.yaml` with your own Discord ID (leave the brackets).
+
+## Discord Webhook Configuration
+
+1. Open the `$HOME/half-life/config.yaml` file in a text editor.
+
+2. Locate the following lines:
+
+    ```yaml
+    sed -i "s/DISCORD_WEBHOOK_ID/xxxx/" $HOME/half-life/config.yaml
+    sed -i "s/DISCORD_WEBHOOK_TOKEN/xxxx/" $HOME/half-life/config.yaml
+    ```
+
+3. Replace "xxxx" in both lines with your actual Discord Webhook ID and Discord Webhook Token. The lines should look like this:
+
+    ```yaml
+    sed -i "s/DISCORD_WEBHOOK_ID/your_actual_webhook_id/" $HOME/half-life/config.yaml
+    sed -i "s/DISCORD_WEBHOOK_TOKEN/your_actual_webhook_token/" $HOME/half-life/config.yaml
+    ```
+
+4. Save the changes to the `config.yaml` file.
+
+## Systemd Service Setup
+
+```bash
 sudo tee /etc/systemd/system/halflife.service << EOF
 [Unit]
 Description=Halflife
@@ -39,9 +83,14 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target
 EOF
+```
 
+## Start and Monitor
+
+```bash
 systemctl daemon-reload
 systemctl enable halflife
 systemctl start halflife
 
 journalctl -u halflife -f
+```
