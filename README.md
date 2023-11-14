@@ -37,25 +37,14 @@ Every Discord account has a unique Discord ID. To get your Discord ID:
 
 Replace `DISCORD_USER_ID` in `$HOME/half-life/config.yaml` with your own Discord ID (leave the brackets).
 
-## Discord Webhook Configuration
+## Discord Webhook Configuration (Only for owner Discord server) 
 
-1. Open the `$HOME/half-life/config.yaml` file in a text editor.
+```markdown
+sed -i "s/DISCORD_WEBHOOK_ID/xxxx/" $HOME/half-life/config.yaml
+sed -i "s/DISCORD_WEBHOOK_TOKEN/xxxx/" $HOME/half-life/config.yaml
+```
 
-2. Locate the following lines:
-
-    ```yaml
-    sed -i "s/DISCORD_WEBHOOK_ID/xxxx/" $HOME/half-life/config.yaml
-    sed -i "s/DISCORD_WEBHOOK_TOKEN/xxxx/" $HOME/half-life/config.yaml
-    ```
-
-3. Replace "xxxx" in both lines with your actual Discord Webhook ID and Discord Webhook Token. The lines should look like this:
-
-    ```yaml
-    sed -i "s/DISCORD_WEBHOOK_ID/your_actual_webhook_id/" $HOME/half-life/config.yaml
-    sed -i "s/DISCORD_WEBHOOK_TOKEN/your_actual_webhook_token/" $HOME/half-life/config.yaml
-    ```
-
-4. Save the changes to the `config.yaml` file.
+Replace "xxxx" in both lines with your actual Discord Webhook ID and Discord Webhook Token.
 
 ## Systemd Service Setup
 
